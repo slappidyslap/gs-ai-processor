@@ -1,0 +1,37 @@
+module kg.musabaev.seogooglesheetshelper {
+	requires com.google.api.services.sheets;
+	requires com.google.api.client.extensions.jetty.auth;
+	requires com.google.api.client.auth;
+	requires com.google.api.client.extensions.java6.auth;
+	requires com.google.api.client;
+	requires google.api.client;
+
+	requires com.google.api.client.json.gson;
+	requires com.google.gson;
+	requires static lombok;
+
+	requires org.apache.httpcomponents.httpclient;
+	requires org.apache.httpcomponents.httpcore;
+
+	requires java.desktop;
+	requires javafx.graphics;
+	requires javafx.fxml;
+	requires javafx.controls;
+
+	requires org.slf4j;
+	requires ch.qos.logback.classic;
+
+	requires jdk.httpserver;
+	requires io.avaje.config;
+	requires net.synedra.validatorfx;
+    requires org.seleniumhq.selenium.chrome_driver;
+    requires io.github.bonigarcia.webdrivermanager;
+    requires org.seleniumhq.selenium.support;
+
+    exports kg.musabaev.seogooglesheetshelper;
+
+	opens kg.musabaev.seogooglesheetshelper.gui.model to com.google.gson, javafx.base;
+	opens kg.musabaev.seogooglesheetshelper to javafx.graphics;
+	opens kg.musabaev.seogooglesheetshelper.gui.controller to javafx.fxml;
+	opens kg.musabaev.seogooglesheetshelper.chatgpt to com.google.gson;
+}

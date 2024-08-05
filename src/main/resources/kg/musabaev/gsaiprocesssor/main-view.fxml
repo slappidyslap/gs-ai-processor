@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" minWidth="450.0" nodeOrientation="LEFT_TO_RIGHT" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kg.musabaev.seogooglesheetshelper.gui.controller.MainFormController">
+   <MenuBar>
+     <menus>
+       <Menu mnemonicParsing="false" text="Действия">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Сохранить" onAction="#saveFile" />
+               <MenuItem mnemonicParsing="false" text="Загрузить" onAction="#loadFile"/>
+               <MenuItem mnemonicParsing="false" onAction="#onOpenCurrentLogs" text="Открыть логи" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Настройки">
+         <items>
+           <MenuItem mnemonicParsing="false" onAction="#onChangeApiKey" text="Изменить API ключ у ChatGPT" />
+<!--           <MenuItem mnemonicParsing="false" text="Изменить запрос по умолчанию" />-->
+<!--           <MenuItem mnemonicParsing="false" text="Переключить на темную тему" />-->
+
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+      <children>
+         <GridPane hgap="10.0" vgap="10.0">
+           <columnConstraints>
+             <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints />
+             <RowConstraints vgrow="SOMETIMES" />
+             <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <TextArea fx:id="queryInput" prefHeight="50.0" prefWidth="200.0" text="&#10;" wrapText="true" GridPane.columnIndex="1" />
+               <TextField fx:id="spreadsheetIdInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <TextField fx:id="sheetNameInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <TextField fx:id="rangeInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <Label text="Запрос" />
+               <Label text="ID таблицы" GridPane.rowIndex="1" />
+               <Label text="Имя листа" GridPane.rowIndex="2" />
+               <Label text="Диапазон" GridPane.rowIndex="3" />
+               <HBox spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <children>
+                     <RadioButton fx:id="metaTitle" mnemonicParsing="false" text="title">
+                        <toggleGroup>
+                           <ToggleGroup fx:id="selectedMetaType" />
+                        </toggleGroup></RadioButton>
+                     <RadioButton fx:id="metaDesc" mnemonicParsing="false" text="description" toggleGroup="$selectedMetaType" />
+                  </children>
+               </HBox>
+               <Label text="Тип меты" GridPane.rowIndex="4" />
+               <Button fx:id="startButton" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#onClickStartButton" text="Начать" GridPane.rowIndex="5">
+                  <padding>
+                     <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                  </padding>
+               </Button>
+               <VBox onMouseClicked="#showCellErrors" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <children>
+                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <children>
+                           <ProgressBar fx:id="progressBar" progress="0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        </children>
+                     </AnchorPane>
+                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                        <children>
+                           <Label fx:id="progressStatus" text="Прогресс" />
+                           <Label fx:id="progressInfo" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children>
+         </GridPane>
+      </children>
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+      </padding>
+   </VBox>
+</VBox>
